@@ -11,7 +11,7 @@ contract Domains {
         console.log("halo bang ini adalah contract untuk domain saya, keren bukan? bukan!");
     }
 
-    // Fungsi register yang menambahkan namanya ke pemetaan kita
+    // Fungsi register yang menambahkan namanya ke Mapping kita
     function register (string calldata name) public {
         domains[name] = msg.sender;
         console.log("%s telah mendaftarkan domain!", msg.sender);
