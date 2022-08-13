@@ -1,5 +1,5 @@
 const main = async () => {
-    const [owner, randomPerson] = await hre.ethers.getSigners();
+    const [owner, randomPerson] = await hre.ethers.getSigners(); // Pengembalian pertama adalah penyebar, yang kedua adalah akun acak
     const domainContractFactory = await hre.ethers.getContractFactory('Domains');
     const domainContract = await domainContractFactory.deploy();
     await domainContract.deployed();
@@ -9,8 +9,13 @@ const main = async () => {
     let txn = await domainContract.register("doom");
     await txn.wait();
 
-    const domainOwner = await domainContract.getAddress("doom");
-    console.log("Pemilik domain:", domainOwner);
+    const domainAddress = await domainContract.getAddress("doom");
+    console.log("Pemilik domain doom:", domainAddress);
+
+
+  // Mencoba membuat rekor yang bukan milikku!
+  tnx = await domainContract.connect(randomPerson).setRecord("doom", "Haha domain saya sekarang!");
+  await txn.wait();
   };
   
   const runMain = async () => {
